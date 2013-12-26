@@ -2,6 +2,11 @@
 
 A python package containing classes for (linear and bilinear) interpolation
 
+The API is optimized for reusing the same table many times.
+
+If `extrapolate` is `True` then a linear extrapolation will be performed using the edge segment.  If
+it is false, then a `ValueError` will be raised.
+
 ## Examples
 
 ### Linear
