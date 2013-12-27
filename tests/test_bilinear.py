@@ -65,6 +65,15 @@ def test_indices_in_not_ascending_order():
     assert_raises(ValueError, BilinearInterpolation, (1, 1, 2), (1, 2, 3),
                   ((1, 2, 3), (2, 3, 4), (3, 4, 5)))
 
+    assert_raises(ValueError, BilinearInterpolation, (1, 2, 3), (1, 2, 1),
+                  ((1, 2, 3), (2, 3, 4), (3, 4, 5)))
+    assert_raises(ValueError, BilinearInterpolation, (1, 2, 3), (2, 1, 2),
+                  ((1, 2, 3), (2, 3, 4), (3, 4, 5)))
+    assert_raises(ValueError, BilinearInterpolation, (1, 2, 3), (1, 2, 2),
+                  ((1, 2, 3), (2, 3, 4), (3, 4, 5)))
+    assert_raises(ValueError, BilinearInterpolation, (1, 2, 3), (1, 1, 2),
+                  ((1, 2, 3), (2, 3, 4), (3, 4, 5)))
+
 
 def test_values_equal_length_to_y_index():
     assert_raises(ValueError, BilinearInterpolation, (1, 2, 3), (1, 2, 3), tuple())
