@@ -118,6 +118,7 @@ def test_interpolations_table():
     assert_almost_equal(table(1, 1), 1)
     assert_almost_equal(table(2, 2), 4)
     assert_almost_equal(table(3, 3), 9)
+    assert_almost_equal(table(4, 4), 16)
 
 
 if __name__ == "__main__":

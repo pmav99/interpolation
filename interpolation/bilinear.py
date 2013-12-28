@@ -51,24 +51,30 @@ class BilinearInterpolation(object):
         if self.extrapolate:
             # fix x index
             if i == -1:
-                i = 0
+                x_slice = slice(None, 2)
             elif i == self.x_length - 1:
-                i = -2
+                x_slice = slice(-2, None)
+            else:
+                x_slice = slice(i, i + 2)
             # fix y index
             if j == -1:
                 j = 0
+                y_slice = slice(None, 2)
             elif j == self.y_length - 1:
                 j = -2
+                y_slice = slice(-2, None)
+            else:
+                y_slice = slice(j, j + 2)
         else:
             if i == -1 or i == self.x_length - 1:
                 raise ValueError("Extrapolation not allowed!")
             if j == -1 or j == self.y_length - 1:
                 raise ValueError("Extrapolation not allowed!")
 
-        x1, x2 = x_index[i:i + 2]
-        y1, y2 = y_index[j:j + 2]
-        z11, z12 = values[j][i:i + 2]
-        z21, z22 = values[j + 1][i:i + 2]
+        x1, x2 = x_index[x_slice]
+        y1, y2 = y_index[y_slice]
+        z11, z12 = values[j][x_slice]
+        z21, z22 = values[j + 1][x_slice]
 
         return (z11 * (x2 - x) * (y2 - y) +
                 z21 * (x - x1) * (y2 - y) +
