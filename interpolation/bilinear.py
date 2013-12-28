@@ -9,10 +9,6 @@ from __future__ import absolute_import
 from bisect import bisect_left
 
 
-def interpolation(slope,x0, y0, x):
-    return y0 + slope * (x - x0)
-
-
 class BilinearInterpolation(object):
     """ Bilinear interpolation with optional extrapolation.  """
     def __init__(self, x_index, y_index, values, extrapolate=True):
